@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: sakila-reactive
+  flyway:
+    locations: classpath:db/mysql/migration
+    url: jdbc:mysql://localhost:3306/sakila
+    user: root
+    password: generic
+    validate-on-migrate: true
+    baseline-on-migrate: true
+    schemas: sakila
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/sakila
+    username: root
+    password: generic 
+    
