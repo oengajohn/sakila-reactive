@@ -30,4 +30,9 @@ public class ActorServiceImpl implements ActorService {
         .switchIfEmpty(Mono.error(new ActorNotFoundException("Actor not found with the given id")));
     }
 
+    @Override
+    public Mono<Actor> save(Actor actor) {
+       return actorRepository.save(actor);
+    }
+
 }

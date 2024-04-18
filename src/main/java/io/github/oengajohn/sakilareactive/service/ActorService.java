@@ -9,5 +9,7 @@ public interface ActorService {
     Flux<Actor> listAll();
 
     Mono<Actor> findActorById(Integer actorId);
+
+    Mono<Actor> save(Actor actor);
     
 }
