@@ -29,4 +29,4 @@ Content-Type: application/json
 
 ### List Films Paginated
 # @name ListFilmsPaginated
-GET http://localhost:8080/api/v1/films/all2?pageNumber=1&pageSize=10 HTTP/1.1
+GET http://localhost:8080/api/v1/films/all/minified?pageNumber=10&pageSize=5 HTTP/1.1

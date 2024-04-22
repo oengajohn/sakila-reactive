@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import io.github.oengajohn.sakilareactive.entity.Film;
+import io.github.oengajohn.sakilareactive.model.FilmDto;
 import io.github.oengajohn.sakilareactive.service.FilmService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -34,6 +35,10 @@ public class FilmController {
     @GetMapping("/all")
     Mono<Page<Film>> getFilms(@RequestParam(value = "pageNumber",defaultValue="0") Integer pageNumber,@RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize ){
         return filmService.getFilms(PageRequest.of(pageNumber,pageSize));
+    }
+    @GetMapping("/all/minified")
+    Mono<Page<FilmDto>> getFilmsDtos(@RequestParam(value = "pageNumber",defaultValue="0") Integer pageNumber,@RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize ){
+        return filmService.getFilmsDtos(PageRequest.of(pageNumber,pageSize));
     }
   
 }

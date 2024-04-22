@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import io.github.oengajohn.sakilareactive.entity.Film;
 import io.github.oengajohn.sakilareactive.entity.Language;
+import io.github.oengajohn.sakilareactive.model.FilmDto;
 import io.github.oengajohn.sakilareactive.repository.FilmRepository;
 import io.github.oengajohn.sakilareactive.repository.LanguageRepository;
 import io.github.oengajohn.sakilareactive.service.FilmService;
@@ -56,6 +57,14 @@ public class FilmServiceImpl implements FilmService{
             Page<Film> page = new PageImpl<>(filmList,pageRequest,totalCount);
             return Mono.just(page);
         });
+    }
+
+    @Override
+    public Mono<Page<FilmDto>> getFilmsDtos(PageRequest pageRequest) {
+        return  filmRepository.findAllBy(pageRequest.getPageSize(),pageRequest.getOffset())
+        .collectList()
+        .zipWith(filmRepository.count())
+        .map(t -> new PageImpl<>(t.getT1(),pageRequest,t.getT2()));
     }
 
     
